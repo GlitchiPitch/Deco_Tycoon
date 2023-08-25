@@ -9,6 +9,7 @@ Build.__index = Build
 function Build.new(buildFolder)
     local self = setmetatable({}, Build)
     
+    -- self.Build = 
     self.Parent = buildFolder
     self.CFrame = buildFolder.baseplate.CFrame
 
@@ -19,6 +20,10 @@ function Build.new(buildFolder)
     -- every parts of build must has a tag : "Destroyable"
 
     return self
+end
+
+function Build:PrepareBuild()
+    
 end
 
 function getCFrameForFurniture(baseplateCFrame)

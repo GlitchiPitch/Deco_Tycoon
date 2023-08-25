@@ -14,14 +14,30 @@ WORKSPACE_FOLDER = Instance.new('Folder')
 WORKSPACE_FOLDER.Name = 'WORKSPACE_FOLDER'
 WORKSPACE_FOLDER.Parent = workspace
 
-MapSetup.newMap = function()
+-- maybe map will be huge map with buildings 
+-- every things wil be destroyable and have index
+-- 
+
+MapSetup.Setup = function()
     
-    local shop = Shop.new(WORKSPACE_FOLDER)
     -- create baseplate made of square, size SQUARE_SIZE
     -- after make a function which are making folders for each build, and it includs into squarePlate and build
+
+    local index = 0
+    for i = 1, 10 do
+        for j = 1, 10 do
+            local folder = Instance.new('Folder')
+            folder.Parent = WORKSPACE_FOLDER
+            folder.Name = 'Build' .. index + 1
+            local part = Instance.new('Part')
+            part.Parent = folder
+        end
+    end
+
     for i, buildFolder in pairs(WORKSPACE_FOLDER) do
         CreateBuild.new(buildFolder)
     end
+    local shop = Shop.new(WORKSPACE_FOLDER)
     --[[
         WORKSPACE_FOLDER
             build1

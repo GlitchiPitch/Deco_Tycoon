@@ -4,6 +4,8 @@ local ServerStorage = game:GetService('ServerStorage')
 local ServerScriptService = game:GetService('ServerScriptService')
 local CollectionService = game:GetService('CollectionService')
 
+local PlayerManager = require(ServerScriptService.Modules.PlayerManager)
+
 local GameSettings = require(ServerScriptService.GameSettings)
 
 local Tools = ServerStorage.Tools:GetChildren()
@@ -19,8 +21,10 @@ function Tool:SetupClientSide(player)
                 local target = mouse.Target
                 if Tool:CheckTarget(target) == 'Destroyable' then
                     DestroyPart(target)
+                    PlayerManager.SetMoney(PlayerManager.GetMoney(player) - 10)
                 elseif Tool:CheckTarget(target) == 'Furniture' then
                     UnanchoredFurniture(target)
+                    PlayerManager.SetMoney(PlayerManager.GetMoney(player) - 10)
                 end
             end)
         end)
